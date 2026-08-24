@@ -18,6 +18,7 @@ from db.database import (
     read_dataframe,
     read_upload,
     schedule_papers_dataframe,
+    students_roster_from_secret,
 )
 from utils.paper_files import find_paper_file
 from utils.schedule import display_date, week_details
@@ -170,12 +171,25 @@ st.dataframe(missing, width="stretch", hide_index=True)
 st.subheader("Manage data")
 students_action, papers_action = st.columns(2)
 with students_action:
+    secret_roster = None if STUDENTS_JSON.exists() else students_roster_from_secret()
     if STUDENTS_JSON.exists():
         st.caption(f"Found {STUDENTS_JSON.as_posix()}")
         if st.button("Load students from inputs/students.json"):
             try:
                 import_students_df(dataframe_from_json(STUDENTS_JSON))
                 st.success("Students loaded from JSON.")
+                st.rerun()
+            except Exception as exc:
+                st.error(str(exc))
+    elif secret_roster is not None:
+        st.caption(
+            "inputs/students.json is not on this host, but a STUDENTS_ROSTER "
+            "secret is set — this survives reboots/redeploys that the file doesn't."
+        )
+        if st.button("Load students from STUDENTS_ROSTER secret"):
+            try:
+                import_students_df(secret_roster)
+                st.success("Students loaded from the STUDENTS_ROSTER secret.")
                 st.rerun()
             except Exception as exc:
                 st.error(str(exc))
@@ -195,6 +209,10 @@ with students_action:
                 st.rerun()
             except Exception as exc:
                 st.error(str(exc))
+        st.caption(
+            "Tip: paste the same roster JSON into a STUDENTS_ROSTER secret so it "
+            "survives reboots without re-uploading — ask Claude to show you the format."
+        )
 
 with papers_action:
     if SCHEDULE_JSON.exists():

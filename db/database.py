@@ -1,3 +1,4 @@
+import io
 import os
 import re
 import sqlite3
@@ -26,6 +27,22 @@ def get_secret(name, default=None):
 
 def admin_password():
     return get_secret("ADMIN_PASSWORD", "change-me")
+
+
+def students_roster_from_secret():
+    """Fallback roster source for when inputs/students.json isn't on disk — it's
+    gitignored (it holds real names) so it never reaches a fresh deploy, and any
+    copy uploaded through the Admin page lives on the host's local disk, which
+    most platforms wipe on every reboot/redeploy. Paste the same JSON content
+    into a STUDENTS_ROSTER secret to make the roster survive that.
+    """
+    raw = get_secret("STUDENTS_ROSTER")
+    if not raw:
+        return None
+    try:
+        return pd.read_json(io.StringIO(raw))
+    except ValueError:
+        return None
 
 
 def database_url():
@@ -441,9 +458,15 @@ def seed_from_inputs_if_empty():
         ).fetchone()[0]
 
     seeded = []
-    if student_count == 0 and STUDENTS_JSON.exists():
-        import_students_df(dataframe_from_json(STUDENTS_JSON))
-        seeded.append("students")
+    if student_count == 0:
+        if STUDENTS_JSON.exists():
+            import_students_df(dataframe_from_json(STUDENTS_JSON))
+            seeded.append("students")
+        else:
+            roster = students_roster_from_secret()
+            if roster is not None:
+                import_students_df(roster)
+                seeded.append("students (from STUDENTS_ROSTER secret)")
     if SCHEDULE_JSON.exists():
         import_papers_df(schedule_papers_dataframe(SCHEDULE_JSON))
         seeded.append("papers")
