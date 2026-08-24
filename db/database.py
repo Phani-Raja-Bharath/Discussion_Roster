@@ -364,6 +364,22 @@ def import_papers_df(df):
                 if link_column and not pd.isna(row[link_column])
                 else extract_url(title)
             )
+            existing = connection.execute(
+                placeholder(
+                    "SELECT id, paper_title FROM papers WHERE week = ? AND paper_number = ?"
+                ),
+                (week, paper_number),
+            ).fetchone()
+            # A (week, paper_number) slot is reused for a different paper when the
+            # schedule is edited after nominations have started. The UPSERT below keeps
+            # the same row id, so any existing nomination would otherwise stay attached
+            # to what is now different content, wrongly blocking the new paper from ever
+            # being nominated. Clear it out here so the slot goes back to available.
+            if existing and existing[1] != title:
+                connection.execute(
+                    placeholder("DELETE FROM nominations WHERE paper_id = ?"),
+                    (existing[0],),
+                )
             connection.execute(
                 placeholder(
                     "INSERT INTO papers(week, paper_number, paper_title, paper_link, active) "
