@@ -89,6 +89,10 @@ class _PooledConnection:
         return self
 
     def __exit__(self, exc_type, exc, tb):
+        # __exit__ always runs before close() ever sets _connection to None (that's
+        # the `with`-block contract), so this holds at runtime; the assert just
+        # proves it to the type checker too.
+        assert self._connection is not None
         try:
             if exc_type is None:
                 self._connection.commit()
@@ -119,8 +123,12 @@ def _get_pool():
                 "DATABASE_URL is set, but psycopg[pool] is not installed. "
                 "Run pip install -r requirements.txt."
             ) from exc
+        # _get_pool() only runs from connect() after is_postgres() already
+        # confirmed database_url() is a truthy postgres URL, so this always holds.
+        url = database_url()
+        assert url
         _pool = ConnectionPool(
-            normalize_postgres_url(database_url()),
+            normalize_postgres_url(url),
             min_size=1,
             max_size=5,
             check=ConnectionPool.check_connection,
@@ -277,7 +285,7 @@ def read_dataframe(sql, params=()):
         if is_postgres():
             cursor = connection.execute(prepared_sql, params)
             columns = [
-                column.name if hasattr(column, "name") else column[0]
+                getattr(column, "name", None) or column[0]
                 for column in cursor.description
             ]
             return pd.DataFrame(cursor.fetchall(), columns=columns)
@@ -366,7 +374,7 @@ def import_papers_df(df):
 
     with transaction() as connection:
         week_counters = {}
-        for index, row in df.iterrows():
+        for _, row in df.iterrows():
             if pd.isna(row[week_column]) or pd.isna(row[title_column]):
                 continue
             title = str(row[title_column]).strip()
