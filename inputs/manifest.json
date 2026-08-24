@@ -1,0 +1,10 @@
+{
+  "students_count": 39,
+  "papers_count": 40,
+  "discussion_weeks_count": 10,
+  "source_file": "Fall2026_Discussion Roster_IDS 5147_Perspectives in M&S(1).xlsx",
+  "files": [
+    "students.json",
+    "discussion_schedule.json"
+  ]
+}

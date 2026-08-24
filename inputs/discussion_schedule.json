@@ -1,0 +1,282 @@
+[
+  {
+    "week": 2,
+    "week_label": "Week 2 Evolution of Simulation and Simulation-based Paradigm",
+    "date": "2026-08-31",
+    "topic": "Nine aspects of Evolution of Simulation; From Model-based to Simulation-based paradigm  \nExperimental Frame; Types of Experimentations; Types of Simulation Techniques for Experimentations",
+    "papers": [
+      {
+        "paper_number": 1,
+        "title": "People Use Fast and Flat Simulation to Reason about New Games. Nature 655(8123): 598–607. doi:10.1038/s41586-026-10722-1.",
+        "link": "https://www.researchgate.net/publication/410143662_People_use_fast_and_flat_simulation_to_reason_about_new_games"
+      },
+      {
+        "paper_number": 2,
+        "title": "Rapid Simulation of Storm Surge Inundation for Hurricane Evacuation in Florida by Multi-Scale Nested Modeling Approach. International Journal of Disaster Risk Reduction 99: 104134. doi:10.1016/j.ijdrr.2023.104134.",
+        "link": "https://www.sciencedirect.com/science/article/abs/pii/S2212420923006143"
+      },
+      {
+        "paper_number": 3,
+        "title": "Virtual Patient Simulation Using Copula Modeling. Clinical Pharmacology & Therapeutics 115(4): 795–804. doi:10.1002/cpt.3099.",
+        "link": "https://ascpt.onlinelibrary.wiley.com/doi/10.1002/cpt.3099"
+      },
+      {
+        "paper_number": 4,
+        "title": "Driver-Pedestrian Interactions at Unsignalized Crossings Are Not in Line With the Nash Equilibrium. IEEE Access 11: 110707–23. doi:10.1109/ACCESS.2023.3322959.",
+        "link": "http://eprints.whiterose.ac.uk/id/eprint/210254/1/Driver-Pedestrian_Interactions_at_Unsignalized_Crossings_Are_Not_in_Line_With_the_Nash_Equilibrium.pdf"
+      }
+    ]
+  },
+  {
+    "week": 4,
+    "week_label": "Week 4 Simulation as Experience",
+    "date": "2026-09-14",
+    "topic": "Simulation as Experience to Enhance Three Types of Skills: Motor Skills, Decision-Making, and Getting Real-life Experience",
+    "papers": [
+      {
+        "paper_number": 5,
+        "title": "Implementing an Escape Room for Clinical Skills Practice in a Paediatrics Clerkship: https://asmepublications.onlinelibrary.wiley.com/doi/10.1111/tct.70033",
+        "link": "https://asmepublications.onlinelibrary.wiley.com/doi/10.1111/tct.70033"
+      },
+      {
+        "paper_number": 6,
+        "title": "The Design and Research of a War Game Simulation System for Equipment Support: https://ieeexplore.ieee.org/document/10808066",
+        "link": "https://ieeexplore.ieee.org/document/10808066"
+      },
+      {
+        "paper_number": 7,
+        "title": "Using Proactive Computing for Real-Time Feedback in High-Fidelity Medical Simulation: https://ieeexplore.ieee.org/document/11058770",
+        "link": "https://ieeexplore.ieee.org/document/11058770"
+      },
+      {
+        "paper_number": 8,
+        "title": "Exploring the Potential of Using Simulation Games for Engaging with Sheep Farmers about Lameness Recognition. Frontiers in Veterinary Science 10. doi:10.3389/fvets.2023.1079948.",
+        "link": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1079948/full"
+      }
+    ]
+  },
+  {
+    "week": 5,
+    "week_label": "Week 5 Reliability and Quality Assurance of M&S",
+    "date": "2026-09-21",
+    "topic": "Errors, Types, and Sources; Reliability, Validation; Verification",
+    "papers": [
+      {
+        "paper_number": 9,
+        "title": "How a Simulator's Fidelity Impacts the Performance of a Decision Support System: A Military Case Study: https://ieeexplore.ieee.org/document/11047897",
+        "link": "https://ieeexplore.ieee.org/document/11047897"
+      },
+      {
+        "paper_number": 10,
+        "title": "Verification, Validation, and Accreditation (VV&A) Considering Military and Defense Characteristics: https://koreascience.or.kr/article/JAKO201510665814017.pdf",
+        "link": "https://koreascience.or.kr/article/JAKO201510665814017.pdf"
+      },
+      {
+        "paper_number": 11,
+        "title": "Ten questions concerning calibrating building energy simulation models. Building and Environment, 284, 113404. https://doi.org/10.1016/j.buildenv.2025.113404",
+        "link": "https://doi.org/10.1016/j.buildenv.2025.113404"
+      },
+      {
+        "paper_number": 12,
+        "title": "Evaluating Model Sensitivity of Various Data Input Resolutions for Large Scale Flood Inundation Modeling for Hurricane Helene, NC. JAWRA Journal of the American Water Resources Association 62(3): e70125. doi:10.1111/1752-1688.70125.",
+        "link": "https://onlinelibrary.wiley.com/doi/full/10.1111/1752-1688.70125"
+      }
+    ]
+  },
+  {
+    "week": 6,
+    "week_label": "Week 6 Continuous Systems",
+    "date": "2026-09-28",
+    "topic": "Continuous systems, Spatio-temporal simulations;",
+    "papers": [
+      {
+        "paper_number": 13,
+        "title": "Modeling Disaster Operations Management Problems with System Dynamics: https://link.springer.com/chapter/10.1007/978-3-319-91509-8_10",
+        "link": "https://link.springer.com/chapter/10.1007/978-3-319-91509-8_10"
+      },
+      {
+        "paper_number": 14,
+        "title": "Predictive large eddy simulations for urban flows: Challenges and opportunities: https://www.sciencedirect.com/science/article/pii/S0360132318302671?via%3Dihub",
+        "link": "https://www.sciencedirect.com/science/article/pii/S0360132318302671?via%3Dihub"
+      },
+      {
+        "paper_number": 15,
+        "title": "Continuous Time Simulation: https://link.springer.com/chapter/10.1007/978-1-4471-5634-5_11#Sec2",
+        "link": "https://link.springer.com/chapter/10.1007/978-1-4471-5634-5_11#Sec2"
+      },
+      {
+        "paper_number": 16,
+        "title": "Behavior of a Person-Following Robot in Pedestrian Environments: Laboratory Experimentation and Simulation: https://journals.sagepub.com/doi/10.1177/03611981251332248",
+        "link": "https://journals.sagepub.com/doi/10.1177/03611981251332248"
+      }
+    ]
+  },
+  {
+    "week": 7,
+    "week_label": "Week 7 Discrete Systems",
+    "date": "2026-10-05",
+    "topic": "DEVS (discrete event system specification), a hierarchical, modular approach to constructing discrete event simulation models",
+    "papers": [
+      {
+        "paper_number": 17,
+        "title": "A Discrete Event Simulation Model for Evaluating the Performances of an M/G/C/C State Dependent Queuing System: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0058402",
+        "link": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0058402"
+      },
+      {
+        "paper_number": 18,
+        "title": "Discrete Event Simulation Method to Model Passenger Processing at an International Airport: https://ieeexplore.ieee.org/document/9185370",
+        "link": "https://ieeexplore.ieee.org/document/9185370"
+      },
+      {
+        "paper_number": 19,
+        "title": "Integrating discrete-event simulation and artificial intelligence for shortening bed waiting times in hospitalization departments during respiratory disease seasons: https://www.sciencedirect.com/science/article/pii/S0360835224005266?via%3Dihub",
+        "link": "https://www.sciencedirect.com/science/article/pii/S0360835224005266?via%3Dihub"
+      },
+      {
+        "paper_number": 20,
+        "title": "Scalable Discrete Event Simulation Tool for Large-Scale Cyber-Physical Energy Systems: Advancing System Efficiency and Scalability. IEEE Access 13: 101900–921. doi:10.1109/ACCESS.2025.3578948.",
+        "link": "https://ieeexplore.ieee.org/document/11030558?denied="
+      }
+    ]
+  },
+  {
+    "week": 8,
+    "week_label": "Week 8 Hybrid Modeling and Simulation",
+    "date": "2026-10-12",
+    "topic": "Combined application of simulation techniques like System Dynamics (SD), Discrete Event Simulation (DES), and agent-based Simulation (ABS) in the context of a single simulation study.",
+    "papers": [
+      {
+        "paper_number": 21,
+        "title": "Integration of Emotional-Cognitive Architecture in ACT-R for Multi-Agent Social Dynamics for Disaster Response Simulation: https://ieeexplore.ieee.org/document/10871489",
+        "link": "https://ieeexplore.ieee.org/document/10871489"
+      },
+      {
+        "paper_number": 22,
+        "title": "Choi, Hee Sun (Sunny), and Tian Cheng. 2026. “Spatial Cognition and Emotion Simulation in Urban Interior Environments Using Agent-Based Modelling.” International Journal of Urban Sciences 0(0): 1–24. doi:10.1080/12265934.2026.2641648.",
+        "link": "https://www.tandfonline.com/doi/full/10.1080/12265934.2026.2641648"
+      },
+      {
+        "paper_number": 23,
+        "title": "A multi-method approach to modeling COVID-19 disease dynamics in the United States: https://www.nature.com/articles/s41598-021-92000-w",
+        "link": "https://www.nature.com/articles/s41598-021-92000-w"
+      },
+      {
+        "paper_number": 24,
+        "title": "Micro-Scale Agent-Based Modeling of Hurricane Evacuation Under Compound Wind–Surge Hazards: A Case Study of Westbrook, Connecticut. Sustainability 18(7): 3182. doi:10.3390/su18073182.",
+        "link": "https://www.mdpi.com/2071-1050/18/7/3182"
+      }
+    ]
+  },
+  {
+    "week": 9,
+    "week_label": "Week 9 Real-time Modeling and Simulation and Digital Twin",
+    "date": "2026-10-19",
+    "topic": "Dynamic modeling; Simulation techniques; Feedback loops and control systems; Introduction to Digital Twins; M&S Vs Digital Twins",
+    "papers": [
+      {
+        "paper_number": 25,
+        "title": "Disaster Management Enabled Metaverse for Crisis Response Using Digital Twin Simulation: https://ieeexplore.ieee.org/document/11032231",
+        "link": "https://ieeexplore.ieee.org/document/11032231"
+      },
+      {
+        "paper_number": 26,
+        "title": "Real-Time Cyber-physical Systems: State-of-the-Art and Future Trends: https://link.springer.com/rwe/10.1007/978-981-287-251-7_37",
+        "link": "https://link.springer.com/rwe/10.1007/978-981-287-251-7_37"
+      },
+      {
+        "paper_number": 27,
+        "title": "makeTwin: A reference architecture for digital twin software platform: https://www.sciencedirect.com/science/article/pii/S1000936123001541?via%3Dihub",
+        "link": "https://www.sciencedirect.com/science/article/pii/S1000936123001541?via%3Dihub"
+      },
+      {
+        "paper_number": 28,
+        "title": "RFAR: A Real-Time Firefighter Activity Recognition System Using Wearable Accelerometer. IEEE Sensors Journal 25(17): 33674–91. doi:10.1109/JSEN.2025.3593466.",
+        "link": "https://ieeexplore.ieee.org/document/11112526"
+      }
+    ]
+  },
+  {
+    "week": 10,
+    "week_label": "Week 10 Visualization Techniques in M&S",
+    "date": "2026-10-26",
+    "topic": "3D visualization; Augmented Reality (AR) and Virtual Reality (VR) User interfaces for M&S and Training",
+    "papers": [
+      {
+        "paper_number": 29,
+        "title": "Scan-to-BIM-to-Sim: Automated Reconstruction of Digital and Simulation Models from Point Clouds with Applications on Bridges. Results in Engineering 25: 104289. doi:10.1016/j.rineng.2025.104289.",
+        "link": "https://www.sciencedirect.com/science/article/pii/S2590123025003743"
+      },
+      {
+        "paper_number": 30,
+        "title": "Introductory overview: Recommendations for approaching scientific visualization with large environmental datasets: https://www.sciencedirect.com/science/article/pii/S1364815221001560?via%3Dihub",
+        "link": "https://www.sciencedirect.com/science/article/pii/S1364815221001560?via%3Dihub"
+      },
+      {
+        "paper_number": 31,
+        "title": "Virtual reality and the transformation of medical education: https://www.sciencedirect.com/science/article/pii/S2514664524000924?via%3Dihub",
+        "link": "https://www.sciencedirect.com/science/article/pii/S2514664524000924?via%3Dihub"
+      },
+      {
+        "paper_number": 32,
+        "title": "FU3D: The First Global Projections of Future Urban Three-Dimensional (3D) Expansion for the 21st Century under Shared Socioeconomic Pathways. Scientific Data 12(1): 1555. doi:10.1038/s41597-025-05711-4.",
+        "link": "https://www.nature.com/articles/s41597-025-05711-4"
+      }
+    ]
+  },
+  {
+    "week": 11,
+    "week_label": "Week 11 Ethics in M&S",
+    "date": "2026-11-02",
+    "topic": "Ethics for computer simulation; The simulationist's code of ethics",
+    "papers": [
+      {
+        "paper_number": 33,
+        "title": "Fairness Testing for Uplift Models. Journal of Marketing Analytics 13(3): 798–823. doi:10.1057/s41270-024-00339-6.",
+        "link": "https://link.springer.com/article/10.1057/s41270-024-00339-6"
+      },
+      {
+        "paper_number": 34,
+        "title": "Modeling Ethics: Reflections At The Intersection Of Ethics And Simulation: https://ieeexplore.ieee.org/document/8732924",
+        "link": "https://ieeexplore.ieee.org/document/8732924"
+      },
+      {
+        "paper_number": 35,
+        "title": "Computing fairness: Ethics of modeling and simulation in public health. https://doi.org/10.1177/0037549720932656",
+        "link": "https://journals.sagepub.com/doi/epdf/10.1177/0037549720932656?src=getftr&utm_source=clarivate&getft_integrator=clarivate"
+      },
+      {
+        "paper_number": 36,
+        "title": "From Theory to Practice: The Sim-Etico Simulation for Ethical Military Education. Academia y Virtualidad 19(1). doi:10.18359/ravi.8046.",
+        "link": "https://revistas.umng.edu.co/index.php/ravi/article/view/8046/6804"
+      }
+    ]
+  },
+  {
+    "week": 12,
+    "week_label": "Week 12 AI/ML in M&S",
+    "date": "2026-11-09",
+    "topic": "Applications of Artificial Intelligence and Machine Learning in Modeling and Simulation. Comparing the AI/ML based results with mathematical methods and evaluations",
+    "papers": [
+      {
+        "paper_number": 37,
+        "title": "Rhythms of Victory: Predicting Professional Tennis Matches Using Machine Learning. IEEE Access 12: 113608–17. doi:10.1109/ACCESS.2024.3444031.",
+        "link": "https://ieeexplore.ieee.org/document/10637388"
+      },
+      {
+        "paper_number": 38,
+        "title": "AI-Driven Optimization of Passenger Flow: Integrating Computer Vision, Machine Learning, and Simulation for Enhanced Efficiency and Revenue Generation: https://ieeexplore.ieee.org/document/11106669",
+        "link": "https://ieeexplore.ieee.org/document/11106669"
+      },
+      {
+        "paper_number": 39,
+        "title": "Deep Reinforcement Learning-Based Control for Real-Time Hybrid Simulation of Civil Structures. International Journal of Robust and Nonlinear Control n/a(n/a). doi:10.1002/rnc.7824.",
+        "link": "https://onlinelibrary.wiley.com/doi/full/10.1002/rnc.7824"
+      },
+      {
+        "paper_number": 40,
+        "title": "A Framework of Large Language Model Commander Agent for Spatial Reasoning in Combat Simulation. Scientific Reports 16(1): 13431. doi:10.1038/s41598-026-43365-3.",
+        "link": "https://www.nature.com/articles/s41598-026-43365-3"
+      }
+    ]
+  }
+]

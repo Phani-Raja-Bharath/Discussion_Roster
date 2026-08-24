@@ -1,0 +1,9 @@
+# Web application framework
+streamlit>=1.38
+
+# Data import/export
+pandas>=2.2
+openpyxl>=3.1
+
+# Neon PostgreSQL connection
+psycopg[binary,pool]>=3.2
