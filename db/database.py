@@ -49,6 +49,7 @@ def normalize_postgres_url(url):
 
 _schema_ready = False
 _pool = None
+_inputs_synced = False
 
 
 class _PooledConnection:
@@ -400,6 +401,10 @@ def is_integrity_error(exc):
 
 
 def seed_from_inputs_if_empty():
+    global _inputs_synced
+    if _inputs_synced:
+        return []
+
     with connect() as connection:
         student_count = connection.execute(
             "SELECT COUNT(*) FROM students WHERE active = TRUE"
@@ -412,11 +417,12 @@ def seed_from_inputs_if_empty():
     if student_count == 0 and STUDENTS_JSON.exists():
         import_students_df(dataframe_from_json(STUDENTS_JSON))
         seeded.append("students")
-    if paper_count == 0:
-        if SCHEDULE_JSON.exists():
-            import_papers_df(schedule_papers_dataframe(SCHEDULE_JSON))
-            seeded.append("papers")
-        elif PAPERS_JSON.exists():
-            import_papers_df(dataframe_from_json(PAPERS_JSON))
-            seeded.append("papers")
+    if SCHEDULE_JSON.exists():
+        import_papers_df(schedule_papers_dataframe(SCHEDULE_JSON))
+        seeded.append("papers")
+    elif paper_count == 0 and PAPERS_JSON.exists():
+        import_papers_df(dataframe_from_json(PAPERS_JSON))
+        seeded.append("papers")
+
+    _inputs_synced = True
     return seeded
