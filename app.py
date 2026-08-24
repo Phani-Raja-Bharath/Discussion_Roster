@@ -75,21 +75,6 @@ metric_one.metric("Available nominations", paper_count - nomination_count)
 metric_two.metric("Papers nominated", nomination_count)
 metric_three.metric("Total papers", paper_count)
 
-if st.session_state.get("confirmation"):
-    confirmation = st.session_state["confirmation"]
-    with st.container(border=True):
-        st.success("Nomination confirmed.")
-        st.markdown(
-            f"**{confirmation['week_label']} | {confirmation['date']}**  \n"
-            f"{confirmation['topic']}"
-        )
-        st.write(f"**Paper {confirmation['paper_number']}:** {confirmation['paper_title']}")
-        if confirmation["paper_link"]:
-            st.link_button("View Paper", confirmation["paper_link"])
-        if st.button("Dismiss"):
-            del st.session_state["confirmation"]
-            st.rerun()
-
 available_students = [
     row[0]
     for row in rows(
@@ -114,81 +99,11 @@ for paper_id, week, paper_number, paper_title, paper_link, nomination_id, nomine
         (paper_id, paper_number, paper_title, paper_link, nomination_id, nominee)
     )
 
-if st.session_state.get("pending_nomination"):
-    pending_nomination = st.session_state["pending_nomination"]
-    with st.container(border=True):
-        st.subheader("Confirm Paper Nomination")
-        st.write(f"Student: {pending_nomination['student_name']}")
-        st.write(f"Week: {pending_nomination['week_label']}")
-        if pending_nomination["date"]:
-            st.write(f"Date: {pending_nomination['date']}")
-        st.write(f"Paper: {pending_nomination['paper_number']}")
-        st.write(pending_nomination["paper_title"])
-        st.caption("You can nominate only one paper. Please confirm before submitting.")
-        cancel, confirm = st.columns(2)
-        if cancel.button("Cancel"):
-            del st.session_state["pending_nomination"]
-            st.rerun()
-        if confirm.button("Confirm Nomination", type="primary"):
-            student = one(
-                "SELECT id FROM students WHERE name = ? AND active = TRUE",
-                (pending_nomination["student_name"],),
-            )
-            if not student:
-                st.error("Selected student was not found. Refresh and try again.")
-            else:
-                if "week" in pending_nomination:
-                    paper = one(
-                        """SELECT p.id, n.id
-                           FROM papers p
-                           LEFT JOIN nominations n ON n.paper_id = p.id
-                           WHERE p.active = TRUE
-                             AND p.week = ?
-                             AND p.paper_number = ?""",
-                        (
-                            pending_nomination["week"],
-                            pending_nomination["paper_number"],
-                        ),
-                    )
-                else:
-                    paper = one(
-                        """SELECT p.id, n.id
-                           FROM papers p
-                           LEFT JOIN nominations n ON n.paper_id = p.id
-                           WHERE p.active = TRUE
-                             AND p.id = ?""",
-                        (pending_nomination["paper_id"],),
-                    )
-                if not paper:
-                    st.error(
-                        f"Paper {pending_nomination['paper_number']} is not available. "
-                        "Refresh the page and try again."
-                    )
-                elif paper[1] is not None:
-                    st.error(
-                        f"Paper {pending_nomination['paper_number']} has already been nominated. "
-                        "Refresh the page and pick another paper."
-                    )
-                else:
-                    try:
-                        create_nomination(student[0], paper[0])
-                        st.session_state["confirmation"] = pending_nomination
-                        del st.session_state["pending_nomination"]
-                        st.rerun()
-                    except Exception as exc:
-                        if is_integrity_error(exc):
-                            st.error(
-                                "This student or paper has already been nominated. "
-                                "Please refresh and try again."
-                            )
-                        else:
-                            st.error(
-                                "This paper was just nominated by another student. "
-                                "Please refresh and pick another."
-                            )
-
 if not available_students:
     st.info("Every student has nominated a paper. Nothing left to sign up for.")
+
+pending_nomination = st.session_state.get("pending_nomination")
+confirmation = st.session_state.get("confirmation")
 
 for week, week_papers in weeks.items():
     details = week_details(week)
@@ -206,7 +121,77 @@ for week, week_papers in weeks.items():
             with st.container(border=True, height=500, key=card_key):
                 st.markdown(f"**Paper {paper_number}**")
 
-                if nomination_id:
+                # These branches render in place of the card's normal contents, right
+                # where the student clicked — never in a separate block at the top of
+                # the page, which on a long list of papers would land off-screen and
+                # make the click look like it did nothing.
+                if confirmation and confirmation["paper_id"] == paper_id:
+                    st.success("Nomination confirmed!")
+                    st.caption(f"You: {confirmation['student_name']}")
+                    if st.button("Dismiss", key=f"dismiss-{paper_id}"):
+                        del st.session_state["confirmation"]
+                        st.rerun()
+                    st.html(
+                        f"<style>.st-key-{card_key} {{"
+                        "background-color: #d9f2d9;"
+                        "border-color: #2e7d32;"
+                        "}</style>"
+                    )
+                elif pending_nomination and pending_nomination["paper_id"] == paper_id:
+                    st.write(f"Confirm nomination for **{pending_nomination['student_name']}**?")
+                    st.caption("You can nominate only one paper. This is final.")
+                    cancel, confirm = st.columns(2)
+                    if cancel.button("Cancel", key=f"cancel-{paper_id}"):
+                        del st.session_state["pending_nomination"]
+                        st.rerun()
+                    if confirm.button("Confirm", key=f"confirm-{paper_id}", type="primary"):
+                        student = one(
+                            "SELECT id FROM students WHERE name = ? AND active = TRUE",
+                            (pending_nomination["student_name"],),
+                        )
+                        if not student:
+                            st.error("Selected student was not found. Refresh and try again.")
+                        else:
+                            paper = one(
+                                """SELECT p.id, n.id
+                                   FROM papers p
+                                   LEFT JOIN nominations n ON n.paper_id = p.id
+                                   WHERE p.active = TRUE
+                                     AND p.week = ?
+                                     AND p.paper_number = ?""",
+                                (
+                                    pending_nomination["week"],
+                                    pending_nomination["paper_number"],
+                                ),
+                            )
+                            if not paper:
+                                st.error(
+                                    f"Paper {pending_nomination['paper_number']} is not available. "
+                                    "Refresh the page and try again."
+                                )
+                            elif paper[1] is not None:
+                                st.error(
+                                    f"Paper {pending_nomination['paper_number']} has already been "
+                                    "nominated. Refresh the page and pick another paper."
+                                )
+                            else:
+                                try:
+                                    create_nomination(student[0], paper[0])
+                                    st.session_state["confirmation"] = pending_nomination
+                                    del st.session_state["pending_nomination"]
+                                    st.rerun()
+                                except Exception as exc:
+                                    if is_integrity_error(exc):
+                                        st.error(
+                                            "This student or paper has already been nominated. "
+                                            "Please refresh and try again."
+                                        )
+                                    else:
+                                        st.error(
+                                            "This paper was just nominated by another student. "
+                                            "Please refresh and pick another."
+                                        )
+                elif nomination_id:
                     st.markdown("**NOMINATED**")
                     st.caption(f"Unavailable: {nominee}" if nominee else "Unavailable")
                     st.html(
