@@ -71,11 +71,18 @@ class _PooledConnection:
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        if exc_type is None:
-            self._connection.commit()
+        try:
+            if exc_type is None:
+                self._connection.commit()
+            else:
+                self._connection.rollback()
+        except Exception:
+            self.close()
+            if exc_type is not None:
+                return False
+            raise
         else:
-            self._connection.rollback()
-        self.close()
+            self.close()
         return False
 
     def close(self):
@@ -98,6 +105,8 @@ def _get_pool():
             normalize_postgres_url(database_url()),
             min_size=1,
             max_size=5,
+            check=ConnectionPool.check_connection,
+            max_idle=60,
             open=True,
         )
     return _pool
@@ -219,7 +228,10 @@ def transaction():
         yield connection
         connection.commit()
     except Exception:
-        connection.rollback()
+        try:
+            connection.rollback()
+        except Exception:
+            pass
         raise
     finally:
         connection.close()
