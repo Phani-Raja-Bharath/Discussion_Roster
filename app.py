@@ -100,7 +100,7 @@ available_students = [
 ]
 
 paper_rows = rows(
-    """SELECT p.id, p.week, p.paper_number, p.paper_title, p.paper_link, s.name
+    """SELECT p.id, p.week, p.paper_number, p.paper_title, p.paper_link, n.id, s.name
        FROM papers p
        LEFT JOIN nominations n ON n.paper_id = p.id
        LEFT JOIN students s ON s.id = n.student_id
@@ -109,9 +109,9 @@ paper_rows = rows(
 )
 
 weeks = OrderedDict()
-for paper_id, week, paper_number, paper_title, paper_link, nominee in paper_rows:
+for paper_id, week, paper_number, paper_title, paper_link, nomination_id, nominee in paper_rows:
     weeks.setdefault(week, []).append(
-        (paper_id, paper_number, paper_title, paper_link, nominee)
+        (paper_id, paper_number, paper_title, paper_link, nomination_id, nominee)
     )
 
 if st.session_state.get("pending_nomination"):
@@ -200,15 +200,15 @@ for week, week_papers in weeks.items():
         unsafe_allow_html=True,
     )
     columns = st.columns(4)
-    for slot, (paper_id, paper_number, paper_title, paper_link, nominee) in enumerate(week_papers):
+    for slot, (paper_id, paper_number, paper_title, paper_link, nomination_id, nominee) in enumerate(week_papers):
         with columns[slot % 4]:
             card_key = f"paper-card-{paper_id}"
             with st.container(border=True, height=500, key=card_key):
                 st.markdown(f"**Paper {paper_number}**")
 
-                if nominee:
+                if nomination_id:
                     st.markdown("**NOMINATED**")
-                    st.caption("Unavailable")
+                    st.caption(f"Unavailable: {nominee}" if nominee else "Unavailable")
                     st.html(
                         f"<style>.st-key-{card_key} {{"
                         "background-color: #d9f2d9;"

@@ -375,6 +375,17 @@ def import_papers_df(df):
             )
 
 
+def clear_stale_nominations():
+    with transaction() as connection:
+        connection.execute(
+            placeholder(
+                """DELETE FROM nominations
+                   WHERE student_id NOT IN (SELECT id FROM students WHERE active = TRUE)
+                      OR paper_id NOT IN (SELECT id FROM papers WHERE active = TRUE)"""
+            )
+        )
+
+
 def paper_schedule_warning():
     df = read_dataframe(
         'SELECT week AS "week", COUNT(*) AS "papers" FROM papers WHERE active = TRUE GROUP BY week ORDER BY CAST(week AS INTEGER)'
@@ -424,5 +435,6 @@ def seed_from_inputs_if_empty():
         import_papers_df(dataframe_from_json(PAPERS_JSON))
         seeded.append("papers")
 
+    clear_stale_nominations()
     _inputs_synced = True
     return seeded
