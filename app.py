@@ -172,10 +172,6 @@ for week, week_papers in weeks.items():
             card_key = f"paper-card-{paper_id}"
             with st.container(border=True, height=500, key=card_key):
                 st.markdown(f"**Paper {paper_number}**")
-                if paper_link:
-                    st.markdown(f"[{paper_title}]({paper_link})")
-                else:
-                    st.write(paper_title)
 
                 if nominee:
                     st.markdown("**NOMINATED**")
@@ -209,3 +205,8 @@ for week, week_papers in weeks.items():
                             "paper_link": paper_link,
                         }
                         st.rerun()
+
+                if paper_link:
+                    st.markdown(f"[{paper_title}]({paper_link})")
+                else:
+                    st.write(paper_title)
