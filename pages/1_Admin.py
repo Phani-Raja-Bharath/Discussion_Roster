@@ -211,7 +211,7 @@ with students_action:
                 st.error(str(exc))
         st.caption(
             "Tip: paste the same roster JSON into a STUDENTS_ROSTER secret so it "
-            "survives reboots without re-uploading — ask Claude to show you the format."
+            "survives reboots without re-uploading."
         )
 
 with papers_action:
